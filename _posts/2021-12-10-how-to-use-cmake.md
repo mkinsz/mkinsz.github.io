@@ -1,14 +1,12 @@
 ---
 layout: post
-title: How To Use CMake
+title: CMake教程
 date: 2021-12-10 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
-fig-caption: # Add figcaption (optional)
 tags: [Holidays, Hawaii]
 ---
-
-CMake是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的autotools，在KDE4时改用CMake)。
+你或许听过好几种Make工具，例如GNU Make，QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等。这些 Make工具遵循着不同的规范和标准，所执行的Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的 Make 工具，就得为每一种标准写一次Makefile，这将是一件让人抓狂的工作。CMake是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的autotools，在KDE4时改用CMake)。
 
 ### 特点及优势
 - 开放源代码，具有BSD许可
