@@ -1,4 +1,4 @@
-name: Build And Deploy Jekyll Site
+name: Build And Deploy
 
 on:
   push:
@@ -10,17 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build jekyll Site
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
     
-    - name: Deploy to GitHub Pages
+    - name: Deploy To GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.8
       with: 
         branch: gh-pages
         folder: ./_site
+
+    - name: Goodbye
+      run: echo Goodbye!
 
 
