@@ -64,5 +64,11 @@ gulp.task('watch', function () {
     gulp.watch(['*.html', '_layouts/*.html', '_includes/*.html', '_pages/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
+// Copy files
+
+// gulp.task('copy', function() {
+//     return gulp.src('_utilities/*').pipe(gulp.dest('_site/utilities'))
+// });
+
 //  Default task
 gulp.task('default', ['browser-sync', 'watch']);

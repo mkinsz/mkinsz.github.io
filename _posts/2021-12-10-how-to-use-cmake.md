@@ -1,14 +1,15 @@
 ---
 layout: post
-title: CMake教程
+title: CMake Tutorial
 date: 2021-12-10 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
-tags: [Holidays, Hawaii]
+tags: [CMake, Cli]
 ---
-你或许听过好几种Make工具，例如GNU Make，QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等。这些 Make工具遵循着不同的规范和标准，所执行的Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的 Make 工具，就得为每一种标准写一次Makefile，这将是一件让人抓狂的工作。CMake是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的autotools，在KDE4时改用CMake)。
+CMake 是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的 autotools，在 KDE4 时改用 CMake)。
 
 ### 特点及优势
+
 - 开放源代码，具有BSD许可
 - 跨平台，支持linux，mac，windows等常用的不同操作系统
 - 编译语言简单，易用，简化编译构建过程
@@ -27,6 +28,7 @@ tags: [Holidays, Hawaii]
 二、自定义变量使用SET(OBJ_NAME xxxx)，使用时${OBJ_NAME}
 
 三、cmake的常用变量：
+```
 CMAKE_BINARY_DIR, PROJECT_BINARY_DIR ：这两个变量内容一致，如果是内部编译，就指的是工程的顶级目录，如果是外部编译，指的就是工程编译发生的目录。
 CMAKE_SOURCE_DIR, PROJECT_SOURCE_DIR：这两个变量内容一致，都指的是工程的顶级目录。
 CMAKE_CURRENT_BINARY_DIR：外部编译时，指的是target目录，内部编译时，指的是顶级目录
@@ -36,25 +38,28 @@ CMAKE_CURRENT_LIST_LINE：当前所在的行
 CMAKE_MODULE_PATH：如果工程复杂，可能需要编写一些cmake模块，这里通过SET指定这个变量
 LIBRARY_OUTPUT_DIR, BINARY_OUTPUT_DIR：库和可执行的最终存放目录
 PROJECT_NAME, CMAKE_PROJECT_NAME：前者是当前CMakeList.txt里设置的project_name，后者是整个项目配置的project_name
+```
 
 四、cmake中调用环境变量
 
 ```
-1. Using $ENV{NAME} : 调用系统环境变量，我们也可以使用 "SET(ENV{NAME} value)".  需要注意的是这里"ENV"没有"$".
-2. CMAKE_INCLUDE_CURRENT_DIR 等同于 INCLUDE_DIRECTORY(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+Using $ENV{NAME} : 调用系统环境变量，我们也可以使用 "SET(ENV{NAME} value)".  需要注意的是这里"ENV"没有"$".
+CMAKE_INCLUDE_CURRENT_DIR 等同于 INCLUDE_DIRECTORY(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 ```
 
 五、其他的内置变量
 
 ```
-1. BUILD_SHARED_LIBS: set the default value when using ADD_LIBRARY()
-2. CMAKE_C_FLAGS: set compiler for c language
-3. CMAKE_CXX_FLAGS: set compiler for c++ language
+BUILD_SHARED_LIBS: set the default value when using ADD_LIBRARY()
+CMAKE_C_FLAGS: set compiler for c language
+CMAKE_CXX_FLAGS: set compiler for c++ language
 ```
 
 六、区分debug和release
 
-在工程build目录下执行 cmake .. -DCMAKE_BUILD_TYPE=DEBUG|RELEASE，再执行make， 或者在顶级CMakeList.txt里加入: set(CMAKE_BUILD_TYPE Debug|Release|MinSizeRel|RelWithDebInfo)
+```
+ 在工程build目录下执行 cmake .. -DCMAKE_BUILD_TYPE=DEBUG|RELEASE，再执行make， 或者在顶级CMakeList.txt里加入: set(CMAKE_BUILD_TYPE Debug|Release|MinSizeRel|RelWithDebInfo)
+```
 
 七、指定编译32bit或64bit程序
 
@@ -67,8 +72,9 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 
 ```
 # 在CMakeList.txt中使用
+
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E environment
+COMMAND ${CMAKE_COMMAND} -E environment
 )
 
 # 在终端中使用
@@ -79,10 +85,10 @@ cmake -E environment
 
 ```
 // 命令行里设置
-cmake -DCMAKE_INSTALL_PREFIX=&lt;install_path&gt;
+cmake -DCMAKE_INSTALL_PREFIX=<install_path>
 
 // 或者在根cmake里设置
-SET(CMAKE_INSTALL_PREFIX &lt;install_path&gt;)
+SET(CMAKE_INSTALL_PREFIX <install_path>)
 ```
 
 默认安装路径是/usr/local
