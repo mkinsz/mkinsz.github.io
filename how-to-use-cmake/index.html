@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
 	<meta charset="utf-8">
-	<title>CMake教程 - Hello Blog!</title>
+	<title>CMake Tutorial - Hello Blog!</title>
 
   <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
 
     <meta content="Hello Blog!" property="og:site_name">
   
-    <meta content="CMake教程" property="og:title">
+    <meta content="CMake Tutorial" property="og:title">
   
   
     <meta content="article" property="og:type">
@@ -31,9 +31,9 @@
   
   
     
-    <meta content="Holidays" property="article:tag">
+    <meta content="CMake" property="article:tag">
     
-    <meta content="Hawaii" property="article:tag">
+    <meta content="Cli" property="article:tag">
     
   
 
@@ -41,7 +41,7 @@
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
   
-    <meta name="twitter:title" content="CMake教程">
+    <meta name="twitter:title" content="CMake Tutorial">
   
   
     <meta name="twitter:url" content="https://mkinsz.github.io/how-to-use-cmake/">
@@ -120,19 +120,20 @@
     
     <div class="page-cover-image">
       <figure>
-        <img class="page-image" src=/assets/img/i-rest.jpg alt="CMake教程">
+        <img class="page-image" src=/assets/img/i-rest.jpg alt="CMake Tutorial">
         
       </figure>
     </div> <!-- End Page Cover Image -->
     
     <div class="wrap-content">
       <header class="header-page">
-        <h1 class="page-title">CMake教程</h1>
+        <h1 class="page-title">CMake Tutorial</h1>
         <div class="page-date"><span>2021, Dec 10&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
       </header>
-      <p>你或许听过好几种Make工具，例如GNU Make，QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等。这些 Make工具遵循着不同的规范和标准，所执行的Makefile格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的 Make 工具，就得为每一种标准写一次Makefile，这将是一件让人抓狂的工作。CMake是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的autotools，在KDE4时改用CMake)。</p>
+      <p>CMake 是一款优秀的工程构建工具，全称是Cross Platform Make，起初是为了满足跨平台的需求，而后不断完善并广泛使用(KDE开发者使用了近10年的 autotools，在 KDE4 时改用 CMake)。</p>
 
 <h3 id="特点及优势">特点及优势</h3>
+
 <ul>
   <li>开放源代码，具有BSD许可</li>
   <li>跨平台，支持linux，mac，windows等常用的不同操作系统</li>
@@ -154,8 +155,8 @@
 
 <p>二、自定义变量使用SET(OBJ_NAME xxxx)，使用时${OBJ_NAME}</p>
 
-<p>三、cmake的常用变量：
-CMAKE_BINARY_DIR, PROJECT_BINARY_DIR ：这两个变量内容一致，如果是内部编译，就指的是工程的顶级目录，如果是外部编译，指的就是工程编译发生的目录。
+<p>三、cmake的常用变量：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CMAKE_BINARY_DIR, PROJECT_BINARY_DIR ：这两个变量内容一致，如果是内部编译，就指的是工程的顶级目录，如果是外部编译，指的就是工程编译发生的目录。
 CMAKE_SOURCE_DIR, PROJECT_SOURCE_DIR：这两个变量内容一致，都指的是工程的顶级目录。
 CMAKE_CURRENT_BINARY_DIR：外部编译时，指的是target目录，内部编译时，指的是顶级目录
 CMAKE_CURRENT_SOURCE_DIR：CMakeList.txt所在的目录
@@ -163,34 +164,26 @@ CMAKE_CURRENT_LIST_DIR：CMakeList.txt的完整路径
 CMAKE_CURRENT_LIST_LINE：当前所在的行
 CMAKE_MODULE_PATH：如果工程复杂，可能需要编写一些cmake模块，这里通过SET指定这个变量
 LIBRARY_OUTPUT_DIR, BINARY_OUTPUT_DIR：库和可执行的最终存放目录
-PROJECT_NAME, CMAKE_PROJECT_NAME：前者是当前CMakeList.txt里设置的project_name，后者是整个项目配置的project_name</p>
+PROJECT_NAME, CMAKE_PROJECT_NAME：前者是当前CMakeList.txt里设置的project_name，后者是整个项目配置的project_name
+</code></pre></div></div>
 
 <p>四、cmake中调用环境变量</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Using $ENV{NAME} : 调用系统环境变量，我们也可以使用 "SET(ENV{NAME} value)".  需要注意的是这里"ENV"没有"$".
-2. CMAKE_INCLUDE_CURRENT_DIR 等同于 INCLUDE_DIRECTORY(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using $ENV{NAME} : 调用系统环境变量，我们也可以使用 "SET(ENV{NAME} value)".  需要注意的是这里"ENV"没有"$".
+CMAKE_INCLUDE_CURRENT_DIR 等同于 INCLUDE_DIRECTORY(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 </code></pre></div></div>
 
 <p>五、其他的内置变量</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. BUILD_SHARED_LIBS: set the default value when using ADD_LIBRARY()
-2. CMAKE_C_FLAGS: set compiler for c language
-3. CMAKE_CXX_FLAGS: set compiler for c++ language
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BUILD_SHARED_LIBS: set the default value when using ADD_LIBRARY()
+CMAKE_C_FLAGS: set compiler for c language
+CMAKE_CXX_FLAGS: set compiler for c++ language
 </code></pre></div></div>
 
 <p>六、区分debug和release</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>在工程build目录下执行 cmake .. -DCMAKE_BUILD_TYPE=DEBUG</td>
-      <td>RELEASE，再执行make， 或者在顶级CMakeList.txt里加入: set(CMAKE_BUILD_TYPE Debug</td>
-      <td>Release</td>
-      <td>MinSizeRel</td>
-      <td>RelWithDebInfo)</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 在工程build目录下执行 cmake .. -DCMAKE_BUILD_TYPE=DEBUG|RELEASE，再执行make， 或者在顶级CMakeList.txt里加入: set(CMAKE_BUILD_TYPE Debug|Release|MinSizeRel|RelWithDebInfo)
+</code></pre></div></div>
 
 <p>七、指定编译32bit或64bit程序</p>
 
@@ -201,8 +194,9 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 <p>八、通过cmake打印能获取到的所有系统环境变量</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 在CMakeList.txt中使用
+
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E environment
+COMMAND ${CMAKE_COMMAND} -E environment
 )
 
 # 在终端中使用
@@ -212,10 +206,10 @@ cmake -E environment
 <p>九、设置install路径</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 命令行里设置
-cmake -DCMAKE_INSTALL_PREFIX=&amp;lt;install_path&amp;gt;
+cmake -DCMAKE_INSTALL_PREFIX=&lt;install_path&gt;
 
 // 或者在根cmake里设置
-SET(CMAKE_INSTALL_PREFIX &amp;lt;install_path&amp;gt;)
+SET(CMAKE_INSTALL_PREFIX &lt;install_path&gt;)
 </code></pre></div></div>
 
 <p>默认安装路径是/usr/local</p>
@@ -259,15 +253,15 @@ ZERO_CHECK
 
       <div class="page-footer">
         <div class="page-share">
-          <a href="https://twitter.com/intent/tweet?text=CMake教程&url=https://mkinsz.github.io/how-to-use-cmake/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=CMake Tutorial&url=https://mkinsz.github.io/how-to-use-cmake/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
           <a href="https://facebook.com/sharer.php?u=https://mkinsz.github.io/how-to-use-cmake/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
           <a href="https://plus.google.com/share?url=https://mkinsz.github.io/how-to-use-cmake/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
         </div>
         <div class="page-tag">
           
-            <a href="/tags#Holidays" class="tag">&#35; Holidays</a>
+            <a href="/tags#CMake" class="tag">&#35; CMake</a>
           
-            <a href="/tags#Hawaii" class="tag">&#35; Hawaii</a>
+            <a href="/tags#Cli" class="tag">&#35; Cli</a>
           
         </div>
       </div>
